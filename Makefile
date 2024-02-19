@@ -16,7 +16,7 @@ PX_SRC = src/
 
 OB_PATH = obj/
 
-PX_FILES = main
+PX_FILES = main lists actions
 
 FILES_OBJ = $(addprefix $(OB_PATH), $(addsuffix .o, $(PX_FILES)))
 
