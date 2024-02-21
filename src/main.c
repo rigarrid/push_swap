@@ -6,13 +6,15 @@
 /*   By: rigarrid <rigarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:00:15 by rigarrid          #+#    #+#             */
-/*   Updated: 2024/02/19 16:55:06 by rigarrid         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:58:20 by rigarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-void ft_tasing(int *n, t_stacks *head)
+/*	Asigna los numeros de la lista al array pasado como argumento.	*/
+
+void ft_asing(int *n, t_stacks *head)
 {
 	n[0] = head->nbr;
 	head = head->next;
@@ -22,11 +24,28 @@ void ft_tasing(int *n, t_stacks *head)
 	head = head->next;
 }
 
+/*	Ordena listas de dos numeros creando una matriz con ellos y
+	y comparandolos	*/
+
+void	ft_two(t_stacks *a)
+{
+	int	copy[2];
+
+	copy[0] = a->nbr;
+	a = a->next;
+	copy[1] = a->nbr;
+	if (copy[0] > copy[1])
+		ft_sa(a);
+}
+
+/*	Guarda los numeros de la lista en un array y los compara para
+	hacer los movimientos adecuados dependiendo del orden.	*/
+
 void	ft_three(t_stacks *head, int argc)
 {
 	int n[3];
 
-	ft_tasing(n, head);
+	ft_asing(n, head);
 	if (n[0] < n[1] && n[1] > n[2] && n[0] < n[2])
 	{
 		ft_sa(head);
@@ -68,7 +87,7 @@ int ft_onlynbr(char *str)
 }
 
 /*	Según el integro pasado como argumento, muestra un mensaje de error 
-	en pantalla.	*/
+	en pantalla.  */
 
 int	ft_error(int e)
 {
@@ -107,10 +126,12 @@ int ft_countNode(t_stacks *head)
 int	main(int argc, char **argv)
 {
     t_stacks	*a;
+	t_stacks	*b;
     int			c = argc - 1;
 
-   if  (ft_onlynbr(argv[c]) == 0)
-        	a = ft_initlist(ft_atoi(argv[c--]));
+	b = NULL;
+	if  (ft_onlynbr(argv[c]) == 0)
+		a = ft_initlist(ft_atoi(argv[c--]));
     while (c >= 1)
     {
         if  (ft_onlynbr(argv[c]) == 0)
@@ -124,6 +145,8 @@ int	main(int argc, char **argv)
 	if (ft_countNode(a) >= 1)
 		return (ft_error(2));
 	ft_makecircle(a);
-	if (argc == 4)
+	if (argc == 3)
+		ft_two(a);
+	else if (argc == 4)
 		ft_three(a, argc);
 	}

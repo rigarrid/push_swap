@@ -6,11 +6,15 @@
 /*   By: rigarrid <rigarrid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 12:54:39 by rigarrid          #+#    #+#             */
-/*   Updated: 2024/02/19 16:57:29 by rigarrid         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:10:45 by rigarrid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
+
+/*	Guarda el nodo principal del stack en una copia y
+	lo asigna como el siguiente nodo del ultimo, haciendo
+	asi una lista circular	*/
 
 t_stacks	*ft_makecircle(t_stacks *head)
 {
@@ -31,7 +35,7 @@ t_stacks	*ft_initlist(int content)
 {
 	t_stacks	*node;
 
-	node = malloc(sizeof(t_stacks *));
+	node = (t_stacks *)malloc(sizeof(t_stacks *));
 	if (!node)
 		return (NULL);
 	node->nbr = content;
